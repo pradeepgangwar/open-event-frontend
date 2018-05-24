@@ -44,6 +44,7 @@
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-flexibility": "^2.0.2",
     "ember-cli-geo": "^4.0.0",
+    "ember-cli-github-pages": "^0.2.0",
     "ember-cli-html-minifier": "^0.2.0",
     "ember-cli-htmlbars": "^2.0.2",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
