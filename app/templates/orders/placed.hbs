@@ -1,37 +1,37 @@
 <div class="ui one column container stackable doubling left grid">
   <div class="row">
     <div class="column">
-      <h2>{{model.order.event.name}}</h2>
+      <h2>{{model.event.name}}</h2>
     </div>
   </div>
   <div class="row">
     <div class="column">
       <div class="ui small gray-text">
-        {{header-date model.order.event.startsAt}} - {{header-date model.order.event.endsAt}}
+        {{header-date model.event.startsAt}} - {{header-date model.event.endsAt}}
         <br>
-        {{model.order.event.locationName}}
+        {{model.event.locationName}}
       </div>
     </div>
   </div>
   <div class="row">
     <div class="ten wide column">
-      {{orders/order-summary data=model.order}}
+      {{orders/order-summary data=model}}
     </div>
     <div class="mobile hidden six wide column">
-      {{orders/event-info data=model.order}}
+      {{orders/event-info data=model}}
     </div>
   </div>
   <div class="row">
     <div class="ten wide column">
-      {{forms/orders/attendee-list save='save' data=model.order}}
+      {{forms/orders/attendee-list save='save' data=model}}
     </div>
     <div class="six wide column">
-      {{#if model.order.event.organizerName}}
+      {{#if model.event.organizerName}}
         <div class="mobile hidden row">
-          {{orders/organizer-info data=model.order}}
+          {{orders/organizer-info data=model}}
         </div>
       {{/if}}
     </div>
   </div>
-  {{paypal-button order=model.order}}  
+  {{paypal-button order=model}}  
 </div>

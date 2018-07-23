@@ -16,7 +16,7 @@
   <div class="ui secondary segment">
     <h3 class="weight-400">{{t 'Order Summary'}}</h3>
   </div>
-  {{#if (or (eq session.currentRouteName 'orders.new') (eq session.currentRouteName 'orders.view'))}}
+  {{#if (or (eq session.currentRouteName 'orders.new') (eq session.currentRouteName 'orders.view') (eq session.currentRouteName 'orders.placed'))}}
     <table class="ui very basic tablet stackable table order-summary">
       <thead>
         <tr>

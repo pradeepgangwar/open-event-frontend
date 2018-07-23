@@ -8,15 +8,12 @@ export default Component.extend({
   async didInsertElement() {
     this._super(...arguments);
     let order = this.get('order');
-    let event = this.get('event');
+    let clientToken;
     try {
       let response = await this.get('loader').load('/get-client-token');
-      console.log(response);
-      // if (response.url.length > 0) {
-      //   this.get('notify').success(this.get('l10n').t('URL received'));
-      // } else {
-      //   this.get('notify').error(this.get('l10n').t('URL not received'));
-      // }
+      clientToken = response.client_token;
+      console.log(clientToken);
+
     } catch (error) {
       this.get('notify').error(this.get('l10n').t(error.message));
     }
@@ -27,32 +24,24 @@ export default Component.extend({
         paypalCheckout
       },
       client: {
-        sandbox: this.get('data.clientToken')
+        sandbox: clientToken
       },
       env    : 'sandbox',
-      commit : true,
+      // commit : true,
 
       payment(data, actions) {
-        return actions.braintree.create({
-          flow                    : 'checkout', // Required
-          amount                  : order.amount, // Required
-          currency                : event.paymentCurrency, // Required
-          enableShippingAddress   : true,
-          shippingAddressEditable : false,
-          shippingAddressOverride : {
-            recipientName : 'Scruff McGruff',
-            line1         : '1234 Main St.',
-            line2         : 'Unit 1',
-            city          : 'Chicago',
-            countryCode   : 'US',
-            postalCode    : '60652',
-            state         : 'IL',
-            phone         : '123.456.7890'
+        return actions.payment.create({
+          payment: {
+            transactions: [
+              {
+                amount: { total: '0.01', currency: 'USD' }
+              }
+            ]
           }
         });
       },
       onAuthorize(payload) {
-        // Submit `payload.nonce` to your server.
+        console.log(payload);
       }
 
     }, this.elementId);
