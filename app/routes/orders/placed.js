@@ -11,7 +11,7 @@ export default Route.extend({
       order: this.store.findRecord('order', params.order_id, {
         include: 'attendees,tickets,event'
       }),
-      braintreeClientToken: this.store.queryRecord('get-client-token', {})
+      // braintreeClientToken: this.store.queryRecord('get-client-token', {})
     };
   },
 

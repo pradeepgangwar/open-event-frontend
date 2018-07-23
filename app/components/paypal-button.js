@@ -9,6 +9,17 @@ export default Component.extend({
     this._super(...arguments);
     let order = this.get('order');
     let event = this.get('event');
+    try {
+      let response = await this.get('loader').load('/get-client-token');
+      console.log(response);
+      // if (response.url.length > 0) {
+      //   this.get('notify').success(this.get('l10n').t('URL received'));
+      // } else {
+      //   this.get('notify').error(this.get('l10n').t('URL not received'));
+      // }
+    } catch (error) {
+      this.get('notify').error(this.get('l10n').t(error.message));
+    }
     console.log(order.amount);
     paypal.Button.render({
       braintree: {
