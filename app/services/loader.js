@@ -37,11 +37,13 @@ export default Service.extend({
       }
       url = config.withoutPrefix ? `${adapter.host}${url}` : `${adapter.urlPrefix()}${url}`;
     }
-
-    fetchOptions.headers = config.replaceHeaders ? config.header : merge(fetchOptions.headers, config.headers);
+    console.log(config);
+    fetchOptions.headers = config.replaceHeaders ? config.headers : merge(fetchOptions.headers, config.headers);
     fetchOptions.method = method;
+    console.log(fetchOptions.headers);
 
     if (data) {
+      console.log(data);
       if (bodyAllowedIn.includes(method)) {
         if (config.skipDataTransform) {
           fetchOptions.body = data;
@@ -49,6 +51,7 @@ export default Service.extend({
           if (config.isFormData) {
             fetchOptions.body = objectToFormData(data);
           } else {
+            console.log('hi');
             fetchOptions.headers['Content-Type'] = 'application/json';
             fetchOptions.body = JSON.stringify(data);
           }
